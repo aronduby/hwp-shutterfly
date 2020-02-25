@@ -2,6 +2,7 @@ var webpack = require("webpack"),
     path = require("path"),
     fileSystem = require("fs"),
     env = require("./utils/env"),
+    contentScripts = require('./utils/content-scripts.config'),
     CleanWebpackPlugin = require("clean-webpack-plugin").CleanWebpackPlugin,
     CopyWebpackPlugin = require("copy-webpack-plugin"),
     HtmlWebpackPlugin = require("html-webpack-plugin"),
@@ -53,20 +54,28 @@ var options = {
   },
   plugins: [
     // clean the build folder
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      cleanAfterEveryBuildPatterns: ['!manifest.json']
+    }),
     // expose and write the allowed env vars on the compiled bundle
     new webpack.EnvironmentPlugin(["NODE_ENV"]),
+
     new CopyWebpackPlugin([{
       from: "src/manifest.json",
       transform: function (content, path) {
-        // generates the manifest file using the package.json informations
+        // copy over the content scripts
+        let contentScriptsInjection = contentScripts.map(cs => cs.injection);
+
+        // generates the manifest file using the package.json information
         return Buffer.from(JSON.stringify({
           description: process.env.npm_package_description,
           version: process.env.npm_package_version,
+          content_scripts: contentScriptsInjection,
           ...JSON.parse(content.toString())
         }))
       }
     }]),
+
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "src", "popup.html"),
       filename: "popup.html",
@@ -88,6 +97,17 @@ var options = {
 
 if (env.NODE_ENV === "development") {
   options.devtool = "cheap-module-eval-source-map";
+}
+
+if (contentScripts.length) {
+  options.chromeExtensionBoilerplate = {
+    notHotReload: []
+  };
+
+  contentScripts.forEach((cs) => {
+    options.chromeExtensionBoilerplate.notHotReload.push(cs.name);
+    options.entry[cs.name] = cs.path;
+  });
 }
 
 module.exports = options;

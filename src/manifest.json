@@ -1,5 +1,6 @@
 {
-  "name": "Chrome Extension Webpack",
+  "name": "HWP Shutterfly Extension",
+  "permissions": ["storage"],
   "options_page": "options.html",
   "background": {
     "page": "background.html"
