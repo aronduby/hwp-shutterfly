@@ -70,8 +70,8 @@ var options = {
         return Buffer.from(JSON.stringify({
           description: process.env.npm_package_description,
           version: process.env.npm_package_version,
-          content_scripts: contentScriptsInjection,
-          ...JSON.parse(content.toString())
+          ...JSON.parse(content.toString()),
+          content_scripts: contentScriptsInjection
         }))
       }
     }]),

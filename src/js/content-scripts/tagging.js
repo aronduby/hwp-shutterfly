@@ -11,6 +11,7 @@
  *      n = next photo
  *      p = previous photo
  *      a = tag all people currently displayed in the dropdown
+ *      z = un-tag the currently tagged
  *      + custom keys and names stored in extension storage
  *
  */
@@ -58,7 +59,8 @@ function init() {
                     let s = document.createElement('span');
                     s.classList.add('tag-list-me');
                     s.textContent = ` [${byNames[name].join(', ')}]`;
-                    el.appendChild(s);
+
+                    el.parentNode.insertBefore(s, el.nextSibling);
                 }
             });
     });
@@ -76,7 +78,7 @@ function init() {
                     break;
                 // alt + a = all people in dropdown
                 case "a":
-                    [...acList.querySelectorAll('li')]
+                    [...acList.querySelectorAll('li a.tag-link')]
                         .filter(el => el.style.display === 'block')
                         .forEach(el => {
                             el.click();
@@ -92,7 +94,7 @@ function init() {
                 default:
                     if (customMap.has(e.key)) {
                         let customList = customMap.get(e.key);
-                        [...taggingList.querySelectorAll('li')]
+                        [...taggingList.querySelectorAll('li a.tag-link')]
                             .filter(el => customList.includes(el.textContent))
                             .forEach(el => el.click());
                     }

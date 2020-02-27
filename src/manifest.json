@@ -1,15 +1,26 @@
 {
   "name": "HWP Shutterfly Extension",
-  "permissions": ["storage"],
+  "permissions": [
+    "storage",
+    "declarativeContent",
+    "activeTab"
+  ],
   "options_page": "options.html",
   "background": {
-    "page": "background.html"
+    "scripts": ["background.bundle.js"],
+    "persist": false
   },
-  "browser_action": {
-    "default_popup": "popup.html",
-    "default_icon": "icon-34.png"
+  "page_action": {
+    "default_icon": {
+      "34": "icon-34-inverted.png",
+      "128": "icon-128-inverted.png"
+    },
+    "default_title": "Actions for this Page",
+    "default_popup": "popup.html"
   },
+  "content_scripts": ["I'll be overridden by content-scripts.config.js in utils"],
   "icons": {
+    "34": "icon-34.png",
     "128": "icon-128.png"
   },
   "manifest_version": 2,
