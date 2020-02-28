@@ -1,4 +1,5 @@
 import {getSubdomain} from "../get-subdomain";
+import '../../css/tagging-groups.css';
 
 const reserved = ['a', 'n', 'p', 'z'];
 const sub = getSubdomain();
@@ -17,6 +18,11 @@ chrome.runtime.onMessage.addListener((message) => {
 });
 
 function initUx(groupMap) {
+    // already setup
+    if (document.querySelector('.hwp-root')) {
+        return true;
+    }
+
     let names = [...document.querySelectorAll('.roster-name')].map(el => el.textContent.trim());
 
     let groupsByName = [...groupMap.entries()].reduce((acc, [key, list]) => {
@@ -44,7 +50,8 @@ function initUx(groupMap) {
                 <form class="hwp-playerGroupAdminForm">
                     ${createPlayerTable(names, groups, groupsByName)}
                 </form>
-            </section>      
+            </section>
+            <button class="hwp-close">&times;</button>
         </article>
     `;
 
@@ -53,10 +60,21 @@ function initUx(groupMap) {
     el.innerHTML = content;
     document.body.appendChild(el);
 
-    // adding a new group
-    document.querySelector('.hwp-groupAddForm').addEventListener('submit', addNewGroup);
-    document.querySelector('.hwp-groupList').addEventListener('click', removeGroup);
-    document.querySelector('.hwp-playerGroupAdminForm').addEventListener('submit', saveGroups);
+    setupEvents();
+}
+
+/**
+ * Setup (and tear down) events
+ * @param {boolean} unbind - if we're actually removing/unbinding events
+ */
+function setupEvents(unbind = false) {
+    let method = unbind ? removeEventListener : addEventListener;
+
+    method.call(document.querySelector('.hwp-groupAddForm'), 'submit', addNewGroup);
+    method.call(document.querySelector('.hwp-groupList'), 'click', removeGroup);
+    method.call(document.querySelector('.hwp-playerGroupAdminForm'), 'submit', saveGroups);
+    method.call(document.querySelector('.hwp-close'), 'click', removeUx);
+
 }
 
 /**
@@ -142,6 +160,8 @@ function saveGroups(e) {
         } else {
             alert('Save success!');
         }
+
+        removeUx();
     });
 }
 
@@ -195,13 +215,21 @@ function createPlayerTable(names, groups, groupsByName) {
     return `
         <table class="hwp-player-table">
             ${tableContent}
-            <tfoot>
-                <tr><td colspan="2"><button id="hwp-submit">save</button></td></tr>
-            </tfoot>
         </table>
+        <footer class="hwp-player-footer">
+            <button id="hwp-submit">save</button>
+        </footer>
     `;
 }
 
+/**
+ * Remove the UX / Closes the popup
+ */
+function removeUx() {
+    setupEvents(true);
+
+    document.querySelector('.hwp-root').remove();
+}
 
 /**
  * Returns an array with arrays of the given size.

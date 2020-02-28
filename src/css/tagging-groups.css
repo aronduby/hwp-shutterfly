@@ -1,0 +1,69 @@
+.hwp-root {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(255,255,255,.5);
+}
+
+.hwp-popup {
+    margin: auto;
+    position: relative;
+    top: -100px;
+    padding: 1em;
+    background: white;
+    z-index: 9999;
+    box-shadow: 0 0 5px rgba(0,0,0,.5);
+}
+
+.hwp-close {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+}
+
+.hwp-groupAdmin {
+    display: flex;
+    align-items: flex-end;
+}
+
+.hwp-groupList {
+    list-style: none;
+    display: flex;
+}
+
+.hwp-groupList li {
+    margin-right: 1em;
+}
+
+.hwp-player-table {
+    display: flex;
+    border: 2px solid #a7a7a7;
+    border-left: none;
+    border-right: none;
+    padding: 1em 0;
+    margin: 1em 0;
+}
+
+.hwp-player-table td,
+.hwp-player-table th {
+    padding: .5em
+}
+
+.hwp-player-table tr:nth-child(even) {
+    background: rgba(0,0,0,.05);
+}
+
+.hwp-player-table tbody {
+    border-left: 2px solid rgba(0,0,0,.2);
+}
+
+.hwp-player-table label {
+    margin: 0 0 0 .5em;
+}
+
+.hwp-player-footer {
+    text-align: right;
+}
