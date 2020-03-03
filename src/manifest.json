@@ -3,12 +3,13 @@
   "permissions": [
     "storage",
     "declarativeContent",
-    "activeTab"
+    "activeTab",
+    "identity",
+    "https://*.hudsonvillewaterpolo.com/*"
   ],
   "options_page": "options.html",
   "background": {
-    "scripts": ["background.bundle.js"],
-    "persist": false
+    "scripts": ["background.bundle.js"]
   },
   "page_action": {
     "default_icon": {

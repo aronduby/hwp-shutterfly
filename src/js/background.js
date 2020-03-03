@@ -3,6 +3,8 @@ import '../img/icon-34-inverted.png'
 import '../img/icon-128.png'
 import '../img/icon-128-inverted.png'
 
+import * as auth from './auth';
+
 // When the extension is installed or upgraded ...
 chrome.runtime.onInstalled.addListener(function() {
     // Replace all rules ...
@@ -15,8 +17,7 @@ chrome.runtime.onInstalled.addListener(function() {
                 conditions: [
                     new chrome.declarativeContent.PageStateMatcher({
                         pageUrl: {
-                            hostContains: '.shutterfly.com',
-                            pathEquals: '/roster'
+                            hostContains: '.shutterfly.com'
                         },
                     })
                 ],
@@ -28,3 +29,6 @@ chrome.runtime.onInstalled.addListener(function() {
         ]);
     });
 });
+
+window.auth = auth;
+auth.login(false);

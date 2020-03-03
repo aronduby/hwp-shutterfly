@@ -5,7 +5,20 @@
   <title></title>
 </head>
 <body>
-  <button class="action" data-action="setDefaultGroups">Set Default Groups</button>
-  <button class="action" data-action="triggerGroupingUx">Manage Groups</button>
+
+  <div class="hide-when-logged-in">
+    <button class="action" data-action="login">Login</button>
+    <button class="action" data-action="logToken">Log Token</button>
+  </div>
+  <div class="block-when-logged-in">
+    <p>Hello World</p>
+  </div>
+
+  <hr>
+
+  <!--<button class="action" data-action="setDefaultGroups">Set Default Groups</button>-->
+  <button class="action" data-action="triggerGroupingUx" data-enable="^\/roster$">Manage Groups</button>
+  <button class="action" data-action="syncPlayers" data-enable="^\/roster$">Sync Players</button>
+  <button class="action show-when-logged-in" data-action="importTags" data-enable="^\/_\/tags$">Import Tags</button>
 </body>
 </html>

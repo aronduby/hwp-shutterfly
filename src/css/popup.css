@@ -1,0 +1,18 @@
+body.logged-in {
+    background: red;
+}
+
+body.logged-in .hide-when-logged-in {
+    display: none;
+}
+
+.block-when-logged-in,
+.flex-when-logged-in,
+.grid-when-logged-in {
+    display: none;
+}
+
+body.logged-in .block-when-logged-in,
+body.logged-in .show-when-logged-in { display: block; }
+body.logged-in .flex-when-logged-in { display: flex; }
+body.logged-in .grid-when-logged-in { display: grid; }
