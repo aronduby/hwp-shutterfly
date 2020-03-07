@@ -1,6 +1,8 @@
 import '../typedefs/sync-players';
 
 import {getSubdomain} from "../get-subdomain";
+import {Blocker} from "./blocker";
+
 import '../../css/hwp-popup.css';
 import '../../css/hwp-table.css';
 import '../../css/content-sync-players.css';
@@ -149,9 +151,12 @@ async function playerSyncSubmitted(e) {
     e.stopPropagation();
     e.stopImmediatePropagation();
 
+    Blocker.show();
+
     const saveData = parseDataFromRows([...e.target.querySelectorAll('.hwp-playerSync-section tbody tr')]);
 
     if (!validateSaveData(saveData)) {
+        Blocker.hide();
         return false;
     }
 
@@ -168,7 +173,8 @@ async function playerSyncSubmitted(e) {
             action: "saveSyncData",
             saveData
         };
-        chrome.runtime.sendMessage('lfimaogdbgapfifdopnggggongekhpnf', saveMessage, (rsp) => {
+
+        chrome.runtime.sendMessage(chrome.runtime.id, saveMessage, (rsp) => {
             // some error happened trying to send to the extension
             if (chrome.runtime.lastError) {
                 rsp = {
@@ -176,9 +182,9 @@ async function playerSyncSubmitted(e) {
                     success: false
                 }
             }
-            console.log(rsp);
 
             alert(rsp.message);
+            Blocker.hide();
             if (rsp.success) {
                 removeUx();
             }
@@ -187,6 +193,7 @@ async function playerSyncSubmitted(e) {
     } catch (err) {
         console.error(err);
         alert(`Something went wrong in the saving process. Please refresh the page and try again later.`);
+        Blocker.hide();
     }
 }
 

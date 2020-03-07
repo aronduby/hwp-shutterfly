@@ -26,6 +26,9 @@
     "34": "icon-34.png",
     "128": "icon-128.png"
   },
+  "web_accessible_resources" : [
+    "loading.png"
+  ],
   "manifest_version": 2,
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqF4AjKk879YdIfupTRJlq4e6CYE5dImaT2458gaHD6Yn4EmEtim7IF8YPmpjxJmvopPm3xcsS3BhnGwH+VruhlDLx329NYoiluhkIPgHlgljKSsyKFjyfk2EijXDj/O080URQsMw5Qrq/FfRJ1rzviNyzKYuj2gDA1uwcopwbS/7xWIn/xKVORBgwyTcC8DQ/h2TzQZPjpHidZWuyW+tRfKQ+xX89WVScdCMh2o2Po5+5smsOgdBwp5WYdv/gn28a02IKIRj6Z7Ut6ggB9j542nYdzl3KrLFuhsjolMiPmEO/dX0fbZR77KJLVZW5WitZA6+tJ+eUUrUh8K5IAOB9wIDAQAB"

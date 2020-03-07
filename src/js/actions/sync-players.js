@@ -1,5 +1,6 @@
 import '../typedefs/sync-players';
 
+import { Blocker } from "../blocker.ext";
 import * as settings from '../settings';
 import * as messaging from '../messaging';
 
@@ -26,6 +27,8 @@ export function backgroundTasks() {
  * Loads all of our player data from the site and then kicks off the content
  */
 export function syncPlayers() {
+    Blocker.show();
+
     let opts = {
         method: 'GET',
         mode: 'cors',
@@ -51,6 +54,8 @@ export function syncPlayers() {
                 action: 'syncPlayersUx',
                 allPlayers
             });
+
+            Blocker.hide();
         });
 }
 
