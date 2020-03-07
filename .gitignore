@@ -2,3 +2,5 @@ node_modules
 build
 _assets
 secrets.*.js
+/build.crx
+/build.pem

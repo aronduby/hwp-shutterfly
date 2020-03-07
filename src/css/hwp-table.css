@@ -1,0 +1,23 @@
+.hwp-table {
+    border: 2px solid #a7a7a7;
+    border-left: none;
+    border-right: none;
+    margin: 1em 0;
+    width: 100%;
+}
+
+.hwp-table td,
+.hwp-table th {
+    padding: .5em
+}
+
+.hwp-table tr:nth-child(even) {
+    background: rgba(0,0,0,.05);
+}
+
+.hwp-table tbody[data-empty-msg]:empty::before {
+    content: attr(data-empty-msg);
+    padding: 1em;
+    opacity: .6;
+    display: block;
+}

@@ -1,7 +1,9 @@
+import * as settings from './settings';
+
 let token;
 let expiration;
 
-const authBase = 'https://hudsonvillewaterpolo.local/oauth/authorize';
+const authBase = `${settings.baseUrl}/oauth/authorize`;
 const clientId = '3';
 const scopes = ['*'];
 
@@ -37,12 +39,8 @@ function login(interactive = true) {
     }));
 }
 
-function signRequest() {
-    console.log(token);
-}
-
 function addCallback(cb) {
     callbacks.push(cb);
 }
 
-export {token, login, signRequest, addCallback};
+export {token, login, addCallback};

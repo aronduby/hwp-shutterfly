@@ -8,11 +8,13 @@ module.exports = [
         }
     },
     {
-        name: 'tagging-set-groups',
-        path: './src/js/content-scripts/tagging-set-groups.js',
+        name: 'roster-page',
+        path: './src/js/content-scripts/roster-page.js',
         injection: {
             matches: ['https://*.shutterfly.com/roster'],
-            js: ['tagging-set-groups.bundle.js']
+            js: [
+                'roster-page.bundle.js'
+            ]
         }
     }
 ];

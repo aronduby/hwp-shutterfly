@@ -4,6 +4,7 @@ import '../img/icon-128.png'
 import '../img/icon-128-inverted.png'
 
 import * as auth from './auth';
+import {backgroundTasks as syncPlayersBackgroundTasks} from "./actions/sync-players";
 
 // When the extension is installed or upgraded ...
 chrome.runtime.onInstalled.addListener(function() {
@@ -32,3 +33,5 @@ chrome.runtime.onInstalled.addListener(function() {
 
 window.auth = auth;
 auth.login(false);
+
+syncPlayersBackgroundTasks();

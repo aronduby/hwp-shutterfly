@@ -1,4 +1,6 @@
 import {getSubdomain} from "../get-subdomain";
+import '../../css/hwp-popup.css';
+import '../../css/hwp-table.css';
 import '../../css/tagging-groups.css';
 
 const reserved = ['a', 'n', 'p', 'z'];
@@ -34,6 +36,11 @@ function initUx(groupMap) {
 
     let content = `
         <article class="hwp-popup">
+            <header class="hwp-popup-header">
+                <h1>Manage Groups</h1>
+                <p>Groups allow you to assign short cut keys to tag multiple people at once. Simply hot Alt + Your Letter to tag everyone in that group.</p>
+                <button class="hwp-close">&times;</button>
+            </header>
             <section class="hwp-groupAdmin">
                 <form class="hwp-groupAddForm">
                     <fieldset>
@@ -51,7 +58,6 @@ function initUx(groupMap) {
                     ${createPlayerTable(names, groups, groupsByName)}
                 </form>
             </section>
-            <button class="hwp-close">&times;</button>
         </article>
     `;
 
@@ -213,7 +219,7 @@ function createPlayerTable(names, groups, groupsByName) {
     });
 
     return `
-        <table class="hwp-player-table">
+        <table class="hwp-table hwp-player-table">
             ${tableContent}
         </table>
         <footer class="hwp-player-footer">

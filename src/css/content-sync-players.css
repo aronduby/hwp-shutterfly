@@ -1,0 +1,38 @@
+.hwp-playerSync-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+}
+
+.hwp-playerSync-section table {
+    border-bottom: none;
+}
+
+.hwp-playerSync-section tr > td:last-child {
+    text-align: center;
+}
+
+/* duplicate error styles */
+tr[data-duplicate-tags],
+tr[data-duplicate-tags] select,
+tr[data-duplicate-tags] input {
+    color: red;
+    border-color: red;
+}
+
+/* don't color the inside of the select */
+tr[data-duplicate-tags] select option,
+tr[data-duplicate-tags] select optgroup {
+    color: initial;
+}
+
+tr[data-duplicate-tags] th:first-child::before {
+    content: "⛔";
+}
+
+.hwp-playerSync-footer {
+    grid-column: 1 /span 3;
+    text-align: right;
+    padding-top: 10px;
+    border-top: 2px solid #a7a7a7;
+}
