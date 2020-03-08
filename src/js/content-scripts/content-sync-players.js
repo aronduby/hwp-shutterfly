@@ -1,6 +1,7 @@
 import '../typedefs/sync-players';
 
 import {getSubdomain} from "../get-subdomain";
+import {shittyShutterflyParse} from "../shitty-shutterfly-parse";
 import {Blocker} from "./blocker";
 
 import '../../css/hwp-popup.css';
@@ -603,23 +604,6 @@ function createSaveCheckbox(checked) {
  * Util Methods
  *
  */
-
-/**
- * Shutterfly is stupid and doesn't do JSON, and the extended the prototype for object, which is also stupid
- * but it's how they do it so now it's how we do it for this too
- *
- * @param s
- * @returns {*}
- */
-function shittyShutterflyParse(s) {
-    let v;
-    if (s) {
-        try {
-            eval("v=" + s)
-        } catch (ex) {}
-    }
-    return v;
-}
 
 /**
  * Gets an array of tr rows for the given ids

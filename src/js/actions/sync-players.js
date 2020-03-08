@@ -4,8 +4,6 @@ import { Blocker } from "../blocker.ext";
 import * as settings from '../settings';
 import * as messaging from '../messaging';
 
-let bgp = chrome.extension.getBackgroundPage();
-
 /**
  * This lives in popup, but popup won't be open/listening so we need to export this out to the background.js file
  */
@@ -28,6 +26,8 @@ export function backgroundTasks() {
  */
 export function syncPlayers() {
     Blocker.show('loading players');
+
+    const bgp = chrome.extension.getBackgroundPage();
 
     let opts = {
         method: 'GET',
@@ -67,6 +67,8 @@ export function syncPlayers() {
  * @returns {Promise<{}>}
  */
 export async function saveSyncData(message) {
+    const bgp = chrome.extension.getBackgroundPage();
+
     let opts = {
         method: 'POST',
         mode: 'cors',

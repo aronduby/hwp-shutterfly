@@ -6,6 +6,7 @@
     "activeTab",
     "identity",
     "https://*.hudsonvillewaterpolo.com/*",
+    "https://hudsonvillewaterpolo.com/*",
     "https://*.hudsonvillewaterpolo.local/*",
     "https://hudsonvillewaterpolo.local/*"
   ],

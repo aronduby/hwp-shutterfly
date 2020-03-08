@@ -5,6 +5,7 @@ import {triggerGroupingUx} from "./actions/grouping-trigger-ux";
 import {login, logToken} from "./actions/login";
 import {getTabUrl} from "./get-tab-url";
 import {syncPlayers} from "./actions/sync-players";
+import {importTags} from "./actions/import-tags";
 
 const bgp = chrome.extension.getBackgroundPage();
 
@@ -14,7 +15,7 @@ const actions = {
     login,
     logToken,
     syncPlayers,
-    importTags: () => alert('not there yet')
+    importTags
 };
 
 function updateButtonEnabledState (url, onlyUpdateThisBtn = false) {

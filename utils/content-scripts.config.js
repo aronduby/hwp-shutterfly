@@ -16,5 +16,15 @@ module.exports = [
                 'roster-page.bundle.js'
             ]
         }
+    },
+    {
+        name: 'tags-page',
+        path: './src/js/content-scripts/tags-page.js',
+        injection: {
+            matches: ['https://*.shutterfly.com/_/tags*'],
+            js: [
+                'tags-page.bundle.js'
+            ]
+        }
     }
 ];

@@ -1,5 +1,6 @@
 import * as auth from './auth';
 import {backgroundTasks as syncPlayersBackgroundTasks} from "./actions/sync-players";
+import {backgroundTasks as importTagsBackgroundTasks} from "./actions/import-tags";
 
 import '../img/icon-16.png';
 import '../img/icon-32.png';
@@ -35,3 +36,4 @@ window.auth = auth;
 auth.login(false);
 
 syncPlayersBackgroundTasks();
+importTagsBackgroundTasks();
