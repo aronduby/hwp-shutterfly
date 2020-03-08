@@ -15,15 +15,19 @@
   },
   "page_action": {
     "default_icon": {
-      "34": "icon-34-inverted.png",
-      "128": "icon-128-inverted.png"
+      "16":  "icon-16.png",
+      "32": "icon-32.png",
+      "48":  "icon-48.png",
+      "128": "icon-128.png"
     },
     "default_title": "Actions for this Page",
     "default_popup": "popup.html"
   },
   "content_scripts": ["I'll be overridden by content-scripts.config.js in utils"],
   "icons": {
-    "34": "icon-34.png",
+    "16":  "icon-16.png",
+    "32": "icon-32.png",
+    "48":  "icon-48.png",
     "128": "icon-128.png"
   },
   "web_accessible_resources" : [

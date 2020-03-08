@@ -1,10 +1,10 @@
-import '../img/icon-34.png'
-import '../img/icon-34-inverted.png'
-import '../img/icon-128.png'
-import '../img/icon-128-inverted.png'
-
 import * as auth from './auth';
 import {backgroundTasks as syncPlayersBackgroundTasks} from "./actions/sync-players";
+
+import '../img/icon-16.png';
+import '../img/icon-32.png';
+import '../img/icon-48.png';
+import '../img/icon-128.png';
 
 // When the extension is installed or upgraded ...
 chrome.runtime.onInstalled.addListener(function() {
