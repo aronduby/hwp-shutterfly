@@ -151,7 +151,7 @@ async function playerSyncSubmitted(e) {
     e.stopPropagation();
     e.stopImmediatePropagation();
 
-    Blocker.show();
+    Blocker.show('saving data');
 
     const saveData = parseDataFromRows([...e.target.querySelectorAll('.hwp-playerSync-section tbody tr')]);
 

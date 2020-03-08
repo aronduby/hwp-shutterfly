@@ -5,12 +5,29 @@ import '../../img/loading.png';
 
 export class Blocker {
 
-    static show() {
+    static show(details) {
         document.body.appendChild(this.el);
+
+        if (details) {
+            this.detail(details);
+        }
     }
 
     static hide() {
         this.el.remove();
+        if (this.detailEl) {
+            this.detailEl.remove();
+        }
+    }
+
+    static detail(content) {
+        if (!this.detailEl) {
+            this.detailEl = document.createElement('aside');
+            this.detailEl.id = 'hwp-blocker-detail';
+            this.el.appendChild(this.detailEl);
+        }
+
+        this.detailEl.innerHTML = content;
     }
 
 }
@@ -29,7 +46,7 @@ chrome.runtime.onMessage.addListener((message) => {
     if (message.channel === CHANNEL) {
         switch (message.action) {
             case SHOW:
-                Blocker.show();
+                Blocker.show(message.data);
                 break;
 
             case HIDE:

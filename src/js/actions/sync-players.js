@@ -27,7 +27,7 @@ export function backgroundTasks() {
  * Loads all of our player data from the site and then kicks off the content
  */
 export function syncPlayers() {
-    Blocker.show();
+    Blocker.show('loading players');
 
     let opts = {
         method: 'GET',
