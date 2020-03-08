@@ -1,4 +1,6 @@
 import {getSubdomain} from "../get-subdomain";
+import { CHANNEL, OPEN } from "../actions/grouping-trigger-ux";
+
 import '../../css/hwp-popup.css';
 import '../../css/hwp-table.css';
 import '../../css/tagging-groups.css';
@@ -10,7 +12,7 @@ const storageKey = `${sub}.tagging.groups`;
 let groups = [];
 
 chrome.runtime.onMessage.addListener((message) => {
-    if (message.action === 'groups') {
+    if (message.channel === CHANNEL  && message.action === OPEN) {
         chrome.storage.sync.get(storageKey, ({[storageKey]: items}) => {
             const groupMap = new Map(items);
             groups = [...groupMap.keys()];

@@ -1,6 +1,5 @@
 import "../css/popup.css";
 
-import {setDefaultGroups} from "./actions/grouping-set-default";
 import {triggerGroupingUx} from "./actions/grouping-trigger-ux";
 import {login, logToken} from "./actions/login";
 import {getTabUrl} from "./get-tab-url";
@@ -10,7 +9,6 @@ import {importTags} from "./actions/import-tags";
 const bgp = chrome.extension.getBackgroundPage();
 
 const actions = {
-    setDefaultGroups,
     triggerGroupingUx,
     login,
     logToken,

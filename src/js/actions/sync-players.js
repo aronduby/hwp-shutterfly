@@ -4,12 +4,16 @@ import { Blocker } from "../blocker.ext";
 import * as settings from '../settings';
 import * as messaging from '../messaging';
 
+export const CHANNEL = 'sync-players';
+export const SAVE = 'save';
+export const OPEN = 'open';
+
 /**
  * This lives in popup, but popup won't be open/listening so we need to export this out to the background.js file
  */
 export function backgroundTasks() {
     chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-        if (message.action === 'saveSyncData') {
+        if (message.channel === CHANNEL && message.action === SAVE) {
             saveSyncData(message)
                 .then((rsp) => {
                     sendResponse(rsp);
@@ -51,7 +55,8 @@ export function syncPlayers() {
             // message content script so it can handle the UX and dom setup
             // later that UX will call back for saving
             messaging.send({
-                action: 'syncPlayersUx',
+                channel: CHANNEL,
+                action: OPEN,
                 allPlayers
             });
 

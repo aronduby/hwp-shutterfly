@@ -3,13 +3,14 @@ import '../typedefs/sync-players';
 import {getSubdomain} from "../get-subdomain";
 import {shittyShutterflyParse} from "../shitty-shutterfly-parse";
 import {Blocker} from "./blocker";
+import { CHANNEL, OPEN, SAVE } from "../actions/sync-players";
 
 import '../../css/hwp-popup.css';
 import '../../css/hwp-table.css';
 import '../../css/content-sync-players.css';
 
 chrome.runtime.onMessage.addListener((message) => {
-    if (message.action === 'syncPlayersUx') {
+    if (message.channel === CHANNEL &&  message.action === OPEN) {
         initUx(message.allPlayers);
     }
 });
@@ -171,7 +172,8 @@ async function playerSyncSubmitted(e) {
 
         // send it through the extension for saving
         const saveMessage = {
-            action: "saveSyncData",
+            channel: CHANNEL,
+            action: SAVE,
             saveData
         };
 
