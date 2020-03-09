@@ -4,3 +4,4 @@ _assets
 secrets.*.js
 /build.crx
 /build.pem
+/build.zip
