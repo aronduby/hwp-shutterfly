@@ -1,12 +1,14 @@
+import deepmerge from "deepmerge";
+import { STORAGE_KEY } from "./options-storage-key";
+
 import "../css/_variables.css";
 import "../css/options.css";
-import deepmerge from "deepmerge";
 
 const settingsTemplate = require("../templates/options.hbs");
 const domainListItemPartial = require('../templates/partials/options/domain-list-item.hbs');
 const domainListEmptyPartial = require('../templates/partials/options/domain-list-empty.hbs');
 
-const STORAGE_KEY = 'extension.settings';
+
 const DEFAULT_SETTINGS = {
     domains: [],
     activeDomain: null
@@ -78,6 +80,7 @@ async function saveSettings(settings) {
  * @param err
  */
 function handleError(err) {
+    debugger;
     console.error(err);
     alert('Sorry, something went wrong');
 }

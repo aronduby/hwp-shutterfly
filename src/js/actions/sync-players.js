@@ -1,7 +1,7 @@
 import '../typedefs/sync-players';
 
 import { Blocker } from "../blocker.ext";
-import * as settings from '../settings';
+import { settings } from '../settings';
 import * as messaging from '../messaging';
 
 export const CHANNEL = 'sync-players';
@@ -28,7 +28,7 @@ export function backgroundTasks() {
 /**
  * Loads all of our player data from the site and then kicks off the content
  */
-export function syncPlayers() {
+export async function syncPlayers() {
     Blocker.show('loading players');
 
     const bgp = chrome.extension.getBackgroundPage();
@@ -41,7 +41,7 @@ export function syncPlayers() {
         }
     };
 
-    fetch(`${settings.baseUrl}/shutterfly/players`, opts)
+    fetch(`${await settings.baseUrl}/shutterfly/players`, opts)
         .then((res) => res.json())
         .then(players => {
             let allPlayers = Object.values(players).reduce((all, group) => {
@@ -83,7 +83,7 @@ export async function saveSyncData(message) {
         body: JSON.stringify(message.saveData)
     };
 
-    return fetch(`${settings.baseUrl}/shutterfly/sync`, opts)
+    return fetch(`${await settings.baseUrl}/shutterfly/sync`, opts)
         .then(rsp => {
             if (!rsp.ok) {
                 console.error(rsp);

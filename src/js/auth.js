@@ -1,15 +1,17 @@
-import * as settings from './settings';
+import { settings } from './settings';
 
 let token;
 let expiration;
 
-const authBase = `${settings.baseUrl}/oauth/authorize`;
 const clientId = '3';
 const scopes = ['*'];
 
 const callbacks = [];
 
-function login(interactive = true) {
+async function login(interactive = true) {
+    debugger;
+    const authBase = `${await settings.baseUrl}/oauth/authorize`;
+
     const redirectURL = chrome.identity.getRedirectURL('hwp');
     const authParams = new URLSearchParams({
         client_id: clientId,

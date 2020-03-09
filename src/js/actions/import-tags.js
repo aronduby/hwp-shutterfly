@@ -1,5 +1,5 @@
 import * as messaging from '../messaging';
-import * as settings from "../settings";
+import { settings } from "../settings";
 
 export const CHANNEL = 'import-tags';
 export const QUERY = 'query';
@@ -47,7 +47,7 @@ async function postTagsToServer(tags) {
         body: JSON.stringify(tags)
     };
 
-    return fetch(`${settings.baseUrl}/shutterfly/saveTags`, opts)
+    return fetch(`${await settings.baseUrl}/shutterfly/saveTags`, opts)
         .then(rsp => {
             if (!rsp.ok) {
                 console.error(rsp);
