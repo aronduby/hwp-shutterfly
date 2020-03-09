@@ -56,8 +56,7 @@ var options = {
           ],
           helperDirs: [
             path.join(__dirname, 'src', 'templates', 'helpers'),
-          ],
-          debug: true
+          ]
         }
       }
     ]
