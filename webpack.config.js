@@ -46,6 +46,19 @@ var options = {
         test: /\.html$/,
         loader: "html-loader",
         exclude: /node_modules/
+      },
+      {
+        test: /\.hbs$/,
+        loader: "handlebars-loader",
+        query: {
+          partialDirs: [
+            path.join(__dirname, 'src', 'templates', 'partials')
+          ],
+          helperDirs: [
+            path.join(__dirname, 'src', 'templates', 'helpers'),
+          ],
+          debug: true
+        }
       }
     ]
   },

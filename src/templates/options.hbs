@@ -1,0 +1,24 @@
+<h1>Settings</h1>
+
+<section class="domains">
+	<h2>Domains</h2>
+	<p>These are the domains for the polo sites you have access to. You can add multiple, but only one can be
+		active at a time. Note, that this is just the domain of the regular site, not the full url or admin. For
+		example: girls.hudsonvillewaterpolo.com</p>
+
+	<ul id="domain-wrapper" class="domain-wrapper" data-domain-length="{{domains.length}}">
+		{{#each domains}}
+			{{> options/domain-list-item domain=this activeDomain=../activeDomain i=@index}}
+		{{else}}
+			{{> options/domain-list-empty}}
+		{{/each}}
+	</ul>
+
+	<button data-click-handler="addDomain" class="btn--primary">Add Domain</button>
+</section>
+
+<hr/>
+
+<footer>
+	<button type="submit" class="btn--primary btn--large">Save Options</button>
+</footer>

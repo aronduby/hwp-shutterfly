@@ -1,0 +1,17 @@
+:root {
+    --text: rgba(0,0,0,.9);
+
+    --dark-contrast: rgba(0,0,0,.9);
+    --light-contrast: rgba(255,255,255,.9);
+
+    --primary: #595a79;
+    --primary-contrast: var(--light-contrast);
+    --secondary: #f7da33;
+    --secondary-contrast: var(--dark-contrast);
+    --action: #559bd4;
+    --action-contrast: var(--light-contrast);
+    --neutral: #f5ecd4;
+    --neutral-contrast: var(--dark-contrast);
+
+    --danger: #900;
+}

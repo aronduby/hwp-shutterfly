@@ -8,7 +8,13 @@ import '../img/icon-48.png';
 import '../img/icon-128.png';
 
 // When the extension is installed or upgraded ...
-chrome.runtime.onInstalled.addListener(function() {
+chrome.runtime.onInstalled.addListener(function(details) {
+
+    // open our settings page when it's first installed
+    if (details.reason === chrome.runtime.OnInstalledReason.INSTALL) {
+        chrome.runtime.openOptionsPage();
+    }
+
     // Replace all rules ...
     chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
 

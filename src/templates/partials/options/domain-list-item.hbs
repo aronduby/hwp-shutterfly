@@ -1,0 +1,11 @@
+<li data-i="{{i}}">
+	<span class="domain input-wrapper">
+		<label for="domain-{{i}}">Domain Name</label>
+		<input id="domain-{{i}}" name="domains" value="{{domain}}" required />
+	</span>
+	<span class="active toggle-switch">
+		<input id="active-{{i}}" type="radio" name="activeDomain" value="{{i}}" {{#when domain 'eq' activeDomain}}checked{{/when}} />
+		<label for="active-{{i}}" class="active radio-label">Active</label>
+	</span>
+	<button data-click-handler="removeDomain" class="btn--circle btn--hover-danger btn-delete">-</button>
+</li>
