@@ -1,6 +1,6 @@
 {
   "name": "hwp-shutterfly",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Helper for Shutterfly being kinda terrible",
   "scripts": {
     "build": "node utils/build.js",

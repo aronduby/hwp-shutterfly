@@ -16,7 +16,7 @@ const loadingPromise = new Promise((resolve, reject) => {
         }
 
         data = {
-            activeDomain: `https://${storedSettings.activeDomain}`
+            activeDomain: storedSettings ? `https://${storedSettings.activeDomain}` : ''
         };
 
         loadingState = RESOLVED;

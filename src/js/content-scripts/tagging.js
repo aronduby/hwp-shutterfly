@@ -30,7 +30,7 @@ function init() {
 
     const input = document.querySelector('#tagging-ac input');
     const acList = document.querySelector('#tagging-ac ul');
-    const taggingList = document.querySelector('#tagging-list ul');
+    const taggingList = document.querySelector('#tagging-list');
     const prevEl = document.querySelector('a.prevTag');
     const nextEl = document.querySelector('a.nextTag');
 
@@ -51,18 +51,32 @@ function init() {
             return acc;
         }, {});
 
-        // update the DOM to show the shortcuts in the list
-        [...taggingList.querySelectorAll('li a.tag-link')]
-            .forEach(el => {
-                let name = el.textContent;
-                if (byNames.hasOwnProperty(name)) {
-                    let s = document.createElement('span');
-                    s.classList.add('tag-list-me');
-                    s.textContent = ` [${byNames[name].join(', ')}]`;
+        function addShortcutKeysToTaggingList() {
+            // update the DOM to show the shortcuts in the list
+            [...taggingList.querySelectorAll('li a.tag-link')]
+                .forEach(el => {
+                    let name = el.textContent;
+                    if (byNames.hasOwnProperty(name)) {
+                        let s = document.createElement('span');
+                        s.classList.add('tag-list-me');
+                        s.textContent = ` [${byNames[name].join(', ')}]`;
 
-                    el.parentNode.insertBefore(s, el.nextSibling);
-                }
-            });
+                        el.parentNode.insertBefore(s, el.nextSibling);
+                    }
+                });
+        }
+
+        const observerOptions = {
+            childList: true,
+            attributes: false,
+            subtree: false //Omit or set to false to observe only changes to the parent node.
+        };
+        const observer = new MutationObserver((records) => {
+            addShortcutKeysToTaggingList();
+        });
+        observer.observe(taggingList, observerOptions);
+
+        addShortcutKeysToTaggingList();
     });
 
     input.addEventListener('keydown', (e) => {
@@ -78,7 +92,7 @@ function init() {
                     break;
                 // alt + a = all people in dropdown
                 case "a":
-                    [...acList.querySelectorAll('li a.tag-link')]
+                    [...acList.querySelectorAll('li')]
                         .filter(el => el.style.display === 'block')
                         .forEach(el => {
                             el.click();
@@ -107,10 +121,7 @@ function init() {
 }
 
 document.addEventListener('click', (e) => {
-    if (
-        !inited
-        && e.path.includes(document.getElementById('pic-add-tag'))
-    ) {
+    if (e.path.includes(document.getElementById('pic-add-tag'))) {
         setTimeout(init, 500);
     }
 });
