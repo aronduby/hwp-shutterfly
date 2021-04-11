@@ -31,8 +31,8 @@ function init() {
     const input = document.querySelector('#tagging-ac input');
     const acList = document.querySelector('#tagging-ac ul');
     const taggingList = document.querySelector('#tagging-list');
-    const prevEl = document.querySelector('a.prevTag');
-    const nextEl = document.querySelector('a.nextTag');
+    const prevEl = document.querySelector('.dlg-buttons button[onclick*="onPrevClick"]');
+    const nextEl = document.querySelector('.dlg-buttons button[onclick*="onNextClick"]');
 
     // gets the custom group map of shortcut key to array of players
     let sub = getSubdomain();
@@ -100,15 +100,15 @@ function init() {
                     break;
                 // alt + z = undo, uncheck checked people
                 case 'z':
-                    [...taggingList.querySelectorAll('.tag-checked')]
-                        .forEach(el => el.click());
+                    [...taggingList.querySelectorAll('input:checked')]
+                        .forEach(el => el.parentElement.click());
                     break;
 
                 // check for the custom defined options
                 default:
                     if (customMap.has(e.key)) {
                         let customList = customMap.get(e.key);
-                        [...taggingList.querySelectorAll('li a.tag-link')]
+                        [...taggingList.querySelectorAll('li label')]
                             .filter(el => customList.includes(el.textContent))
                             .forEach(el => el.click());
                     }

@@ -9,7 +9,6 @@ const scopes = ['*'];
 const callbacks = [];
 
 async function login(interactive = true) {
-    debugger;
     const authBase = `${await settings.baseUrl}/oauth/authorize`;
 
     const redirectURL = chrome.identity.getRedirectURL('hwp');
