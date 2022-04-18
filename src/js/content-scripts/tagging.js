@@ -124,4 +124,6 @@ document.addEventListener('click', (e) => {
     if (e.path.includes(document.getElementById('pic-add-tag'))) {
         setTimeout(init, 500);
     }
+}, {
+    capture: true
 });
