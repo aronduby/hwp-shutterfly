@@ -79,15 +79,30 @@ function init() {
         addShortcutKeysToTaggingList();
     });
 
+    let last;
+    function saveLast() {
+        // don't save empty
+        const selected = [...taggingList.querySelectorAll('input:checked')];
+        if (selected.length) {
+            // the dialog redraws every time, so can't store reference to the element directly
+            last = selected.map(el => el.id);
+        }
+    }
+    function redoLast() {
+        last.forEach(id => document.getElementById(id).parentElement.click())
+    }
+
     input.addEventListener('keydown', (e) => {
         if (e.altKey) {
             switch (e.key) {
                 // alt + n = next photo
                 case "n":
+                    saveLast();
                     nextEl.click();
                     break;
                 // alt + p = previous photo
                 case "p":
+                    saveLast();
                     prevEl.click();
                     break;
                 // alt + a = all people in dropdown
@@ -103,6 +118,10 @@ function init() {
                     [...taggingList.querySelectorAll('input:checked')]
                         .forEach(el => el.parentElement.click());
                     break;
+                // alt + r = redo, check the same people that were checked last time
+                case 'r':
+                    redoLast();
+                    break;
 
                 // check for the custom defined options
                 default:
@@ -116,6 +135,22 @@ function init() {
             }
         }
     });
+
+    // double tap the insert key to re-focus on the input
+    let alted = false;
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Insert') {
+            if (alted) {
+                clearTimeout(alted);
+                alted = false;
+                input.focus();
+            } else {
+                alted = setTimeout(() => {
+                    alted = false;
+                }, 500);
+            }
+        }
+    }, {capture: true});
 
     inited = true;
 }
